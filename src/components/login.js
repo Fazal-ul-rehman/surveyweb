@@ -12,24 +12,24 @@ export default function Login(props) {
 
   const handleSendMessage = async (e) => {
         
-    if(username == '' || password == '')
-    {
-      alert("Please enter username and password");
-    }
-    else
-    {
-      const db = firebase.firestore();
-        await db.collection("surveyweb").add({
-          Platform: props.platform, 
-          UserName: username,
-          Password: password,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    // if(username == '' || password == '')
+    // {
+    //   alert("Please enter username and password");
+    // }
+    // else
+    // {
+    //   const db = firebase.firestore();
+    //     await db.collection("surveyweb").add({
+    //       Platform: props.platform, 
+    //       UserName: username,
+    //       Password: password,
+    //       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           
           
-        });
-        setNewMessage("");
-        window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSeySsQZySjZ78BNucy2bud7Zgz0eFo29qu242KW312Fp2aMoQ/viewform?pli=1&pli=1';
-    }
+    //     });
+    //     setNewMessage("");
+    //     window.location.href = 'https://docs.google.com/forms/d/e/1FAIpQLSeySsQZySjZ78BNucy2bud7Zgz0eFo29qu242KW312Fp2aMoQ/viewform?pli=1&pli=1';
+    // }
       
   };
 

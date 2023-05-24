@@ -1,7 +1,7 @@
-// import "./App.css";
-// import React, { useEffect, useState } from "react";
-// import Login from "./components/login";
-// import { SocialIcon } from 'react-social-icons';
+import "./App.css";
+import React, { useEffect, useState } from "react";
+import Login from "./components/login";
+import { SocialIcon } from 'react-social-icons';
 
 function App() {
   const [showFormFb, setShowFormFb] = useState(false);
@@ -47,7 +47,7 @@ function App() {
     setShowFormSc(false);
     setShowFormtiktok(true);
 
-//   };
+  };
 
   return (
     <div className="Homecontainer">
@@ -76,4 +76,4 @@ function App() {
   );
 }
 
-// export default App;
+export default App;
