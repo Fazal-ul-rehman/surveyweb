@@ -8,28 +8,25 @@ function App() {
   const [showFormTw, setShowFormTw] = useState(false);
   const [showFormSc, setShowFormSc] = useState(false);
   const [showFormIg, setShowFormIg] = useState(false);
-  const [showFormtiktok, setShowFormtiktok] = useState(false);
   const handleClickFb = () => {
     
     setShowFormFb(true);
     setShowFormTw(false);
     setShowFormSc(false);
     setShowFormIg(false);
-    setShowFormtiktok(false);
+   
   };
   const handleClickTw = () => {
     setShowFormTw(true);
     setShowFormFb(false);
     setShowFormSc(false);
     setShowFormIg(false);
-    setShowFormtiktok(false);
   };
   const handleClickSc = () => {
     setShowFormSc(true);
     setShowFormFb(false);
     setShowFormTw(false);
     setShowFormIg(false);
-    setShowFormtiktok(false);
 
   };
   const handleClickIg = () => {
@@ -37,17 +34,9 @@ function App() {
     setShowFormFb(false);
     setShowFormTw(false);
     setShowFormSc(false);
-    setShowFormtiktok(false);
 
   };
-  const handleClickTiktok = () => {
-    setShowFormIg(false);
-    setShowFormFb(false);
-    setShowFormTw(false);
-    setShowFormSc(false);
-    setShowFormtiktok(true);
 
-  };
 
   return (
     <div className="Homecontainer">
@@ -64,10 +53,7 @@ function App() {
       {showFormSc && (
         <Login platform = "Snapchat"/>
       )}
-      <button onClick={handleClickTiktok}>Login with Tiktok    <SocialIcon network="tiktok" bgColor="#db0441"/></button>
-      {showFormtiktok && (
-        <Login platform = "Tiktok"/>
-      )}
+     
       <button onClick={handleClickIg}>Login with Instagram    <SocialIcon network="instagram"/></button>
       {showFormIg && (
         <Login platform = "Instagram"/>
